@@ -1,15 +1,15 @@
 package sml;
 
-// TODO: write a JavaDoc for the class
-
 /**
  * Represents an abstract instruction.
  *
- * @author ...
+ * @author Birkbeck University modified by Calyn Hughes McInnes
  */
 public abstract class Instruction {
 	protected final String label;
 	protected final String opcode;
+
+	protected final int hashCode;
 
 	/**
 	 * Constructor: an instruction with a label and an opcode
@@ -21,15 +21,14 @@ public abstract class Instruction {
 	public Instruction(String label, String opcode) {
 		this.label = label;
 		this.opcode = opcode;
+		this.hashCode = this.hashCode();
 	}
 
 	public String getLabel() {
 		return label;
 	}
 
-	public String getOpcode() {
-		return opcode;
-	}
+	public String getOpcode() { return opcode; }
 
 	public static int NORMAL_PROGRAM_COUNTER_UPDATE = -1;
 
@@ -44,14 +43,16 @@ public abstract class Instruction {
 
 	public abstract int execute(Machine machine);
 
-	protected String getLabelString() {
-		return (getLabel() == null) ? "" : getLabel() + ": ";
-	}
+	protected String getLabelString() { return (getLabel() == null) ? "" : getLabel() + ": "; }
 
-	// TODO: What does abstract in the declaration below mean?
-	//       (Write a short explanation.)
+	// The abstract keyword in the following method declaration specifies that all subclasses of this
+	// class must implement the following method (and as a result, override the standard toString method + others).
 	@Override
 	public abstract String toString();
 
-	// TODO: Make sure that subclasses also implement equals and hashCode (needed in class Machine).
+	@Override
+	public abstract boolean equals(Object object);
+	@Override
+	public abstract int hashCode();
+
 }
