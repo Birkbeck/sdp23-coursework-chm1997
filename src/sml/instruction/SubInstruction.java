@@ -5,8 +5,8 @@ import sml.Machine;
 import sml.RegisterName;
 
 /**
- * This class represents a machine instruction for addition.
- * It adds the contents of two registers given on instancing the object.
+ * This class represents a machine instruction for subtraction.
+ * It subtracts the contents of two registers given on instancing the object.
  * It stores the results of the operation in the first register.
  * @author Calyn Hughes McInnes (chm1997)
  */
