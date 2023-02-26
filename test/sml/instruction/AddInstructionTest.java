@@ -84,6 +84,18 @@ class AddInstructionTest {
     Instruction instruction2 = new AddInstruction(null, ECX, EDX);
     Assertions.assertTrue(instruction1.equals(instruction2));
   }
+
+  @Test
+  void equalsInvalid(){
+    registers.set(EAX, 5);
+    registers.set(EBX, 6);
+    registers.set(ECX, 4);
+    registers.set(EDX, 7);
+    Instruction instruction1 = new AddInstruction(null, EAX, EBX);
+    Instruction instruction2 = new SubInstruction(null, ECX, EDX);
+    Assertions.assertFalse(instruction1.equals(instruction2));
+  }
+
   @Test
   void hashCodeValid() {
     registers.set(EAX, 5);
@@ -97,6 +109,6 @@ class AddInstructionTest {
     registers.set(EAX, 5);
     registers.set(EBX, 6);
     Instruction instruction1 = new AddInstruction(null, EAX, EBX);
-    Assertions.assertNotEquals(112, instruction1.hashCode());
+    Assertions.assertNotEquals(1112321312, instruction1.hashCode());
   }
 }
