@@ -99,15 +99,15 @@ class MulInstructionTest {
     void hashCodeValid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
-        Instruction instruction1 = new MulInstruction(null, EAX, EBX);
-        Assertions.assertEquals(113, instruction1.hashCode());
+        Instruction instruction = new MulInstruction(null, EAX, EBX);
+        Assertions.assertEquals(113, instruction.hashCode());
     }
 
     @Test
     void hashCodInvalid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
-        Instruction instruction1 = new MulInstruction(null, EAX, EBX);
-        Assertions.assertNotEquals(9287562, instruction1.hashCode());
+        Instruction instruction = new MulInstruction(null, EAX, EBX);
+        Assertions.assertNotEquals(9287562, instruction.hashCode());
     }
 }

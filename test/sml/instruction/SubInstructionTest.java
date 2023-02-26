@@ -99,15 +99,15 @@ class SubInstructionTest {
     void hashCodeValid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
-        Instruction instruction1 = new SubInstruction(null, EAX, EBX);
-        Assertions.assertEquals(112, instruction1.hashCode());
+        Instruction instruction = new SubInstruction(null, EAX, EBX);
+        Assertions.assertEquals(112, instruction.hashCode());
     }
 
     @Test
     void hashCodInvalid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
-        Instruction instruction1 = new SubInstruction(null, EAX, EBX);
-        Assertions.assertNotEquals(1213123112, instruction1.hashCode());
+        Instruction instruction = new SubInstruction(null, EAX, EBX);
+        Assertions.assertNotEquals(1213123112, instruction.hashCode());
     }
 }

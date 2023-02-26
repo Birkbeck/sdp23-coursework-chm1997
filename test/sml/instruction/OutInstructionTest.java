@@ -52,4 +52,55 @@ class OutInstructionTest {
         instruction2.execute(machine);
         Assertions.assertEquals("11", outContent.toString());
     }
+    @Test
+    void toStringValid(){
+        registers.set(EAX, 5);
+        Instruction instruction = new OutInstruction(null, EAX);
+        String ActualString = instruction.toString();
+        String ExpectedString = "out EAX";
+        Assertions.assertEquals(ExpectedString, ActualString);
+    }
+
+    @Test
+    void toStringValidLabel(){
+        registers.set(EAX, 5);
+        Instruction instruction = new OutInstruction("f1", EAX);
+        String ActualString = instruction.toString();
+        String ExpectedString = "f1: out EAX";
+        Assertions.assertEquals(ExpectedString, ActualString);
+    }
+
+    @Test
+    void equalsValid(){
+        registers.set(EAX, 5);
+        registers.set(EBX, 6);
+        Instruction instruction1 = new OutInstruction(null, EAX);
+        Instruction instruction2 = new OutInstruction(null, EBX);
+        Assertions.assertTrue(instruction1.equals(instruction2));
+    }
+
+    @Test
+    void equalsInvalid(){
+        registers.set(EAX, 5);
+        registers.set(EBX, 6);
+        registers.set(ECX, 7);
+        Instruction instruction1 = new OutInstruction(null, EAX);
+        Instruction instruction2 = new SubInstruction(null, EBX, ECX);
+        Assertions.assertFalse(instruction1.equals(instruction2));
+    }
+
+    @Test
+    void hashCodeValid() {
+        registers.set(EAX, 5);
+        registers.set(EBX, 6);
+        Instruction instruction1 = new OutInstruction(null, EAX);
+        Assertions.assertEquals(115, instruction1.hashCode());
+    }
+
+    @Test
+    void hashCodInvalid() {
+        registers.set(EAX, 5);
+        Instruction instruction1 = new OutInstruction(null, EAX);
+        Assertions.assertNotEquals(45324534, instruction1.hashCode());
+    }
 }

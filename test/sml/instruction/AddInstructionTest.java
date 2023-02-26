@@ -100,15 +100,15 @@ class AddInstructionTest {
   void hashCodeValid() {
     registers.set(EAX, 5);
     registers.set(EBX, 6);
-    Instruction instruction1 = new AddInstruction(null, EAX, EBX);
-    Assertions.assertEquals(111, instruction1.hashCode());
+    Instruction instruction = new AddInstruction(null, EAX, EBX);
+    Assertions.assertEquals(111, instruction.hashCode());
   }
 
   @Test
   void hashCodInvalid() {
     registers.set(EAX, 5);
     registers.set(EBX, 6);
-    Instruction instruction1 = new AddInstruction(null, EAX, EBX);
-    Assertions.assertNotEquals(1112321312, instruction1.hashCode());
+    Instruction instruction = new AddInstruction(null, EAX, EBX);
+    Assertions.assertNotEquals(1112321312, instruction.hashCode());
   }
 }
