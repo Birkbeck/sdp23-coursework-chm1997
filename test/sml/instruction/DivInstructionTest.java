@@ -57,7 +57,7 @@ class DivInstructionTest {
     @Test
     void executeValidFour() {
         registers.set(EAX, 5);
-        registers.set(EBX, 0);
+        registers.set(EBX, 6);
         Instruction instruction = new DivInstruction(null, EAX, EBX);
         instruction.execute(machine);
         Assertions.assertEquals(0, machine.getRegisters().get(EAX));
@@ -70,6 +70,17 @@ class DivInstructionTest {
         Instruction instruction = new DivInstruction(null, EAX, EBX);
         instruction.execute(machine);
         Assertions.assertEquals(0, machine.getRegisters().get(EAX));
+    }
+
+
+
+    @Test
+    void executeValidSix() {
+        registers.set(EAX, 5);
+        registers.set(EBX, 0);
+        Instruction instruction = new DivInstruction(null, EAX, EBX);
+        instruction.execute(machine);
+        Assertions.assertEquals(5, machine.getRegisters().get(EAX));
     }
 
     @Test
@@ -118,7 +129,7 @@ class DivInstructionTest {
     void hashCodeValid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
-        Instruction instruction1 = new AddInstruction(null, EAX, EBX);
+        Instruction instruction1 = new DivInstruction(null, EAX, EBX);
         Assertions.assertEquals(114, instruction1.hashCode());
     }
 
@@ -126,7 +137,7 @@ class DivInstructionTest {
     void hashCodInvalid() {
         registers.set(EAX, 5);
         registers.set(EBX, 6);
-        Instruction instruction1 = new AddInstruction(null, EAX, EBX);
+        Instruction instruction1 = new DivInstruction(null, EAX, EBX);
         Assertions.assertNotEquals(1112321312, instruction1.hashCode());
     }
 }

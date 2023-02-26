@@ -5,8 +5,8 @@ import sml.Machine;
 import sml.RegisterName;
 
 /**
- * This class represents a machine instruction for addition.
- * It adds the contents of two registers given on instancing the object.
+ * This class represents a machine instruction for integer division.
+ * It divides the contents of two registers given on instancing the object.
  * It stores the results of the operation in the first register.
  * @author Calyn Hughes McInnes (chm1997)
  */
@@ -15,7 +15,7 @@ public class DivInstruction extends Instruction {
     private final RegisterName result;
     private final RegisterName source;
 
-    public static final String OP_CODE = "add";
+    public static final String OP_CODE = "div";
 
     public DivInstruction(String label, RegisterName result, RegisterName source) {
         super(label, OP_CODE);
@@ -27,7 +27,12 @@ public class DivInstruction extends Instruction {
     public int execute(Machine m) {
         int value1 = m.getRegisters().get(result);
         int value2 = m.getRegisters().get(source);
-        m.getRegisters().set(result, value1 + value2);
+        try {
+            m.getRegisters().set(result, value1 / value2);
+        }
+        catch (ArithmeticException e) {
+            return value1;
+        }
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
 
@@ -43,6 +48,6 @@ public class DivInstruction extends Instruction {
 
     @Override
     public int hashCode() {
-        return 111;
+        return 114;
     }
 }
