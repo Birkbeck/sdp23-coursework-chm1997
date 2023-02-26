@@ -13,24 +13,24 @@ import sml.RegisterName;
 public class MovInstruction extends Instruction {
     private final RegisterName result;
 
-    public static final String OP_CODE = "out";
+    private final int value;
+    public static final String OP_CODE = "mov";
 
-    public MovInstruction(String label, RegisterName result) {
+    public MovInstruction(String label, RegisterName result, int value) {
         super(label, OP_CODE);
         this.result = result;
+        this.value = value;
     }
 
     @Override
     public int execute(Machine m) {
-        int value1 = m.getRegisters().get(result);
-        String outString = Integer.toString(value1);
-        System.out.print(outString);
+        m.getRegisters().set(result, value);
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
 
     @Override
     public String toString() {
-        return getLabelString() + getOpcode() + " " + result;
+        return getLabelString() + getOpcode() + " " + result + " " + value;
     }
 
     @Override
@@ -40,6 +40,6 @@ public class MovInstruction extends Instruction {
 
     @Override
     public int hashCode() {
-        return 115;
+        return 116;
     }
 }
