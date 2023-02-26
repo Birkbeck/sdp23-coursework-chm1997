@@ -89,6 +89,14 @@ class AddInstructionTest {
     registers.set(EAX, 5);
     registers.set(EBX, 6);
     Instruction instruction1 = new AddInstruction(null, EAX, EBX);
-    Assertions.assertEquals(111, instruction1);
+    Assertions.assertEquals(111, instruction1.hashCode());
+  }
+
+  @Test
+  void hashCodInvalid() {
+    registers.set(EAX, 5);
+    registers.set(EBX, 6);
+    Instruction instruction1 = new AddInstruction(null, EAX, EBX);
+    Assertions.assertNotEquals(112, instruction1.hashCode());
   }
 }

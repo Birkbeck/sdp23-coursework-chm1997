@@ -36,8 +36,12 @@ public class AddInstruction extends Instruction {
 	}
 
 	@Override
-	public boolean equals(Object object) { return false; }
+	public boolean equals(Object object) {
+		return this.hashCode() == object.hashCode();
+	}
 
 	@Override
-	public int hashCode() { return 1; }
+	public int hashCode() {
+		return 111;
+	}
 }
