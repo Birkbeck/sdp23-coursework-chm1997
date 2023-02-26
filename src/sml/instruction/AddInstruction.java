@@ -36,7 +36,7 @@ public class AddInstruction extends Instruction {
 	}
 
 	@Override
-	public boolean equals(Object object) { return true; }
+	public boolean equals(Object object) { return false; }
 
 	@Override
 	public int hashCode() { return 1; }

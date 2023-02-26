@@ -60,7 +60,17 @@ class AddInstructionTest {
     registers.set(EBX, 6);
     Instruction instruction = new AddInstruction(null, EAX, EBX);
     String ActualString = instruction.toString();
-    String ExpectedString = "Instruction adds the contents of registers EAX and EBX";
+    String ExpectedString = "add EAX EBX";
+    Assertions.assertEquals(ExpectedString, ActualString);
+  }
+
+  @Test
+  void toStringValidLabel(){
+    registers.set(EAX, 5);
+    registers.set(EBX, 6);
+    Instruction instruction = new AddInstruction("f1", EAX, EBX);
+    String ActualString = instruction.toString();
+    String ExpectedString = "f1: add EAX EBX";
     Assertions.assertEquals(ExpectedString, ActualString);
   }
 
