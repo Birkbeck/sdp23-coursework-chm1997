@@ -5,16 +5,15 @@ import sml.Machine;
 import sml.RegisterName;
 
 /**
- * This class represents a machine instruction for addition.
- * It adds the contents of two registers given on instancing the object.
- * It stores the results of the operation in the first register.
+ * This class represents a machine instruction for outputting a register's value.
+ * It prints out the contents of a register (given on instancing the object) to system output.
  * @author Calyn Hughes McInnes (chm1997)
  */
 
 public class OutInstruction extends Instruction {
     private final RegisterName result;
 
-    public static final String OP_CODE = "add";
+    public static final String OP_CODE = "out";
 
     public OutInstruction(String label, RegisterName result) {
         super(label, OP_CODE);
@@ -23,6 +22,9 @@ public class OutInstruction extends Instruction {
 
     @Override
     public int execute(Machine m) {
+        int value1 = m.getRegisters().get(result);
+        String outString = Integer.toString(value1);
+        System.out.print(outString);
         return NORMAL_PROGRAM_COUNTER_UPDATE;
     }
 
@@ -38,6 +40,6 @@ public class OutInstruction extends Instruction {
 
     @Override
     public int hashCode() {
-        return 111;
+        return 115;
     }
 }
