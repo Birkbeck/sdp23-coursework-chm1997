@@ -19,7 +19,6 @@ class AddInstructionTest {
   void setUp() {
     machine = new Machine(new Registers());
     registers = machine.getRegisters();
-    //...
   }
 
   @AfterEach
@@ -35,7 +34,7 @@ class AddInstructionTest {
     Instruction instruction = new AddInstruction(null, EAX, EBX);
     instruction.execute(machine);
     Assertions.assertEquals(11, machine.getRegisters().get(EAX));
-  }
+}
 
   @Test
   void executeValidTwo() {
@@ -44,5 +43,42 @@ class AddInstructionTest {
     Instruction instruction = new AddInstruction(null, EAX, EBX);
     instruction.execute(machine);
     Assertions.assertEquals(1, machine.getRegisters().get(EAX));
+  }
+
+  @Test
+  void executeValidThree(){
+    registers.set(EAX, 0);
+    registers.set(EBX, 0);
+    Instruction instruction = new AddInstruction(null, EAX, EBX);
+    instruction.execute(machine);
+    Assertions.assertEquals(0, machine.getRegisters().get(EAX));
+  }
+
+  @Test
+  void toStringValid(){
+    registers.set(EAX, 5);
+    registers.set(EBX, 6);
+    Instruction instruction = new AddInstruction(null, EAX, EBX);
+    String ActualString = instruction.toString();
+    String ExpectedString = "Instruction adds the contents of registers EAX and EBX";
+    Assertions.assertEquals(ExpectedString, ActualString);
+  }
+
+  @Test
+  void equalsValid(){
+    registers.set(EAX, 5);
+    registers.set(EBX, 6);
+    registers.set(ECX, 4);
+    registers.set(EDX, 7);
+    Instruction instruction1 = new AddInstruction(null, EAX, EBX);
+    Instruction instruction2 = new AddInstruction(null, ECX, EDX);
+    Assertions.assertTrue(instruction1.equals(instruction2));
+  }
+  @Test
+  void hashCodeValid() {
+    registers.set(EAX, 5);
+    registers.set(EBX, 6);
+    Instruction instruction1 = new AddInstruction(null, EAX, EBX);
+    Assertions.assertEquals(111, instruction1);
   }
 }
