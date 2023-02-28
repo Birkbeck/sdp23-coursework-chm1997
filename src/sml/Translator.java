@@ -72,7 +72,35 @@ public final class Translator {
                 String s = scan();
                 return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
             }
-
+            case SubInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case MulInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case DivInstruction.OP_CODE -> {
+                String r = scan();
+                String s = scan();
+                return new DivInstruction(label, Register.valueOf(r), Register.valueOf(s));
+            }
+            case OutInstruction.OP_CODE -> {
+                String r = scan();
+                return new OutInstruction(label, Register.valueOf(r));
+            }
+            case MovInstruction.OP_CODE -> {
+                String r = scan();
+                String x = scan();
+                return new MovInstruction(label, Register.valueOf(r), Integer.parseInt(x));
+            }
+            case JnzInstruction.OP_CODE -> {
+                String r = scan();
+                String L = scan();
+                return new JnzInstruction(label, Register.valueOf(r), L);
+            }
             // TODO: add code for all other types of instructions
 
             // TODO: Then, replace the switch by using the Reflection API
