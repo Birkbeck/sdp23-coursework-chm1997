@@ -5,8 +5,7 @@ import sml.Machine;
 import sml.RegisterName;
 
 /**
- * This class represents a machine instruction for outputting a register's value.
- * It prints out the contents of a register (given on instancing the object) to system output.
+ * This class represents a machine instruction for inputting a value to a register.
  * @author Calyn Hughes McInnes (chm1997)
  */
 
