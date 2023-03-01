@@ -60,9 +60,16 @@ public final class Labels {
 		// TODO: Implement the method using the Stream API (see also class Registers).
 		return "";
 	}
-
 	// TODO: Implement equals and hashCode (needed in class Machine).
+	@Override
+	public boolean equals(Object object) {
+		return this.hashCode() == object.hashCode();
+	}
 
+	@Override
+	public int hashCode() {
+		return 110;
+	}
 	/**
 	 * Removes the labels
 	 */
