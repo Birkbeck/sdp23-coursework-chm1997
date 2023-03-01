@@ -101,8 +101,6 @@ public final class Translator {
                 String L = scan();
                 return new JnzInstruction(label, Register.valueOf(r), L);
             }
-            // TODO: add code for all other types of instructions
-
             // TODO: Then, replace the switch by using the Reflection API
 
             // TODO: Next, use dependency injection to allow this machine class
