@@ -114,7 +114,6 @@ class JnzInstructionTest {
     @Test
     void toStringValid(){
         labels.addLabel("f1", 1);
-        registers.set(EAX, 5);
         Instruction instruction = new JnzInstruction(null, EAX, "f1");
         String ActualString = instruction.toString();
         String ExpectedString = "jnz EAX f1";
@@ -125,7 +124,6 @@ class JnzInstructionTest {
     void toStringValidLabel(){
         labels.addLabel("f1", 1);
         labels.addLabel("f2", 2);
-        registers.set(EAX, 5);
         Instruction instruction = new JnzInstruction("f2", EAX, "f1");
         String ActualString = instruction.toString();
         String ExpectedString = "f2: jnz EAX f1";

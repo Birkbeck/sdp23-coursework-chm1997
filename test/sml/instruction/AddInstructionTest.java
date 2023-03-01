@@ -56,8 +56,6 @@ class AddInstructionTest {
 
   @Test
   void toStringValid(){
-    registers.set(EAX, 5);
-    registers.set(EBX, 6);
     Instruction instruction = new AddInstruction(null, EAX, EBX);
     String ActualString = instruction.toString();
     String ExpectedString = "add EAX EBX";
@@ -66,8 +64,6 @@ class AddInstructionTest {
 
   @Test
   void toStringValidLabel(){
-    registers.set(EAX, 5);
-    registers.set(EBX, 6);
     Instruction instruction = new AddInstruction("f1", EAX, EBX);
     String ActualString = instruction.toString();
     String ExpectedString = "f1: add EAX EBX";

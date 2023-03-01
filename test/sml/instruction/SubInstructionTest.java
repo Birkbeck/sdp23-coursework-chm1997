@@ -56,8 +56,6 @@ class SubInstructionTest {
 
     @Test
     void toStringValid(){
-        registers.set(EAX, 5);
-        registers.set(EBX, 6);
         Instruction instruction = new SubInstruction(null, EAX, EBX);
         String ActualString = instruction.toString();
         String ExpectedString = "sub EAX EBX";
@@ -66,8 +64,6 @@ class SubInstructionTest {
 
     @Test
     void toStringValidLabel(){
-        registers.set(EAX, 5);
-        registers.set(EBX, 6);
         Instruction instruction = new SubInstruction("f1", EAX, EBX);
         String ActualString = instruction.toString();
         String ExpectedString = "f1: sub EAX EBX";

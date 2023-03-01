@@ -54,7 +54,6 @@ class OutInstructionTest {
     }
     @Test
     void toStringValid(){
-        registers.set(EAX, 5);
         Instruction instruction = new OutInstruction(null, EAX);
         String ActualString = instruction.toString();
         String ExpectedString = "out EAX";
@@ -63,7 +62,6 @@ class OutInstructionTest {
 
     @Test
     void toStringValidLabel(){
-        registers.set(EAX, 5);
         Instruction instruction = new OutInstruction("f1", EAX);
         String ActualString = instruction.toString();
         String ExpectedString = "f1: out EAX";
