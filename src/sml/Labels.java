@@ -4,11 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-// TODO: write a JavaDoc for the class
-
 /**
- *
- * @author ...
+ * This class represents a collection of labels that refer to specific instructions within the program.
+ * @author Calyn Hughes McInnes (chm1997)
  */
 public final class Labels {
 	private final Map<String, Integer> labels = new HashMap<>();
@@ -21,8 +19,14 @@ public final class Labels {
 	 */
 	public void addLabel(String label, int address) {
 		Objects.requireNonNull(label);
-		// TODO: Add a check that there are no label duplicates.
-		labels.put(label, address);
+
+		if (labels.containsKey(label) == true) {
+			String dupKeyMessage = "Duplicate Key: " + label + " ignored.";
+			System.out.println(dupKeyMessage);
+		}
+		else {
+			labels.put(label, address);
+		}
 	}
 
 	/**
@@ -32,10 +36,17 @@ public final class Labels {
 	 * @return the address the label refers to
 	 */
 	public int getAddress(String label) {
-		// TODO: Where can NullPointerException be thrown here?
-		//       (Write an explanation.)
-		//       Add code to deal with non-existent labels.
-		return labels.get(label);
+		// A NullPointerException can be thrown here if the method .get(v) is called on a value of v that does not
+		// have a label assigned to it. This exception will be thrown within the .get() method of the hashmap.
+		int returnValue = -1;
+		try {
+			returnValue = labels.get(label);
+		}
+		catch (NullPointerException e){
+			String missingKeyMessage = "Key: " + label + " not found.";
+			System.out.println(missingKeyMessage);
+		}
+		return returnValue;
 	}
 
 	/**
