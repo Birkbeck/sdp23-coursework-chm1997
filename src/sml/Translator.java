@@ -4,7 +4,9 @@ import sml.instruction.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.*;
 import java.nio.charset.StandardCharsets;
+import java.rmi.AccessException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -65,51 +67,61 @@ public final class Translator {
         if (line.isEmpty())
             return null;
 
-        String opcode = scan();
-        switch (opcode) {
-            case AddInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new AddInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case SubInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new SubInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case MulInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new MulInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case DivInstruction.OP_CODE -> {
-                String r = scan();
-                String s = scan();
-                return new DivInstruction(label, Register.valueOf(r), Register.valueOf(s));
-            }
-            case OutInstruction.OP_CODE -> {
-                String r = scan();
-                return new OutInstruction(label, Register.valueOf(r));
-            }
-            case MovInstruction.OP_CODE -> {
-                String r = scan();
-                String x = scan();
-                return new MovInstruction(label, Register.valueOf(r), Integer.parseInt(x));
-            }
-            case JnzInstruction.OP_CODE -> {
-                String r = scan();
-                String L = scan();
-                return new JnzInstruction(label, Register.valueOf(r), L);
-            }
-            // TODO: Then, replace the switch by using the Reflection API
 
+
+        String opcode = scan();
+        String r = scan();
+        String s = scan();
+        String newOpcode = opcode.substring(0, 1).toUpperCase() + opcode.substring(1);
+        String instructionString = "sml.instruction." + newOpcode + "Instruction";
+
+        try {
+                Class<?> clazz = Class.forName("fsdfsdfsdsfdsf");
+                Constructor<?> constructor;
+                Object instructionObject;
+                Instruction instruction;
+                try {
+                    constructor = clazz.getConstructor(String.class, RegisterName.class);
+                    instructionObject = constructor.newInstance(label, Register.valueOf(r));
+                    instruction = Instruction.class.cast(instructionObject);
+                    return instruction;
+                } catch (NoSuchMethodException a) {
+                    try {
+                        constructor = clazz.getConstructor(String.class, RegisterName.class, RegisterName.class);
+                        instructionObject = constructor.newInstance(label, Register.valueOf(r), Register.valueOf(s));
+                        instruction = Instruction.class.cast(instructionObject);
+                        return instruction;
+                    } catch (NoSuchMethodException b) {
+                        try {
+                            constructor = clazz.getConstructor(String.class, RegisterName.class, int.class);
+                            instructionObject = constructor.newInstance(label, Register.valueOf(r), Integer.parseInt(s));
+                            instruction = Instruction.class.cast(instructionObject);
+                            return instruction;
+                        } catch (NoSuchMethodException c) {
+                            }try {
+                                constructor = clazz.getConstructor(String.class, RegisterName.class, String.class);
+                                instructionObject = constructor.newInstance(label, Register.valueOf(r), s);
+                                instruction = Instruction.class.cast(instructionObject);
+                                return instruction;
+                            } catch (NoSuchMethodException d) {
+                        }
+                    }
+                }
+            }
+            catch (ClassNotFoundException e) {
+                System.out.println(e);
+            }
+            catch (InstantiationException e) {
+                System.out.println(e);
+            }
+            catch (IllegalAccessException e) {
+                System.out.println(e);
+            }
+            catch (InvocationTargetException e) {
+                System.out.println(e);
+            }
             // TODO: Next, use dependency injection to allow this machine class
             //       to work with different sets of opcodes (different CPUs)
-
-            default -> {
-                System.out.println("Unknown instruction: " + opcode);
-            }
-        }
         return null;
     }
 

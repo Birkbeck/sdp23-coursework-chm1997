@@ -21,7 +21,7 @@ amongst other skills.
 
 **Name**: Calyn Hughes McInnes
 
-**Your userid**: e.g., chm1997
+**Your userid**: github: chm1997, birdpeck: chughe15
 
 Please do not forget to complete this part as too often we have "orphaned" repositories,
 which can require months to sort out.
