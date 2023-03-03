@@ -76,7 +76,7 @@ public final class Translator {
         String instructionString = "sml.instruction." + newOpcode + "Instruction";
 
         try {
-                Class<?> clazz = Class.forName("fsdfsdfsdsfdsf");
+                Class<?> clazz = Class.forName(instructionString);
                 Constructor<?> constructor;
                 Object instructionObject;
                 Instruction instruction;
